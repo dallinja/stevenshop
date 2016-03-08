@@ -11,10 +11,18 @@
 * {
 	box-sizing: border-box;
 }
+html, body {
+	height: 100%;
+}
 body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 	position: relative;
 	margin: 0;
 	padding: 0;
+}
+body, button, input {
 	font-size: 16px;
 	font-family: 'Source Sans Pro', sans-serif;
 	color: #4D4D4D;
@@ -35,6 +43,23 @@ button.toggle {
 button.toggle i {
 	line-height: 1em;
 	font-size: 3em;
+}
+button.btn {
+	padding: 10px 15px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 1em;
+	cursor: pointer;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.clear {
+	clear: both;
 }
 /*-------HEADER-------*/
 
@@ -57,7 +82,7 @@ nav.main {
 	padding: 0 10px;
 	display: flex;
 	justify-content: space-around;
-	width: 360px;
+	width: 400px;
 	font-size: 1.35em;
 }
 nav.main div.current {
@@ -91,6 +116,9 @@ nav.main div.current {
 	.logo img {
 		height: 50px;
 	}
+	nav.main {
+		width: 360px;
+	}
 }
 @media (max-width: 800px) {
 	nav.main {
@@ -118,16 +146,21 @@ nav.main div.current {
 .container {
 	position: relative;
 	margin: 90px 40px 0;
+	max-width: 1600px;
+	flex: 1;
 }
+
 @media (max-width: 1100px) {
 	.container {
 		margin: 70px 0 0;
+		margin-bottom: -150px;
 	}
 
 }
 @media (max-width: 767px) {
 	.container {
 		margin: 56px 0 0;
+		margin-bottom: -150px;
 	}
 
 }
@@ -376,7 +409,7 @@ p.style span {
 footer {
 	clear: both;
 	background: #777;
-	padding: 50px;
+	padding: 30px;
 }
 
 /*-------Media Queries-------*/
