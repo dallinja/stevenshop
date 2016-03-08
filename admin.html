@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="appName">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Steven Anderson Cabinetry&Construction</title>
+		<link rel="stylesheet" href="css/styles.css">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	</head>
+
+<body ng-controller="MainCtrl">
+
+	<site-header></site-header>
+
+	<div class="container">
+
+		<sidebar></sidebar>
+
+		<div class="content-wrapper">
+			<div class="main-content">
+				<div class="search">
+					<input placeholder="Search names or styles (Ex: smith or alder)">
+				</div>
+				<div class="main-flow">
+					<h2 id="kitchens">Kitchens</h2>
+					<div id="smith" class="job-feature">
+						<div class="job-image">
+							<img src="images/hero.jpg">
+						</div>
+						<div class="job-details">
+							<h3>Smith</h3>
+							<p class="style"><span class="styleText">Style: </span>Alder & Paint</p>
+							<p class="desc">Beautiful Alder and white paint with glazze. Bottle glazed windows. Carvings and reaised feet.</p>
+							<div class="job-gallery">
+								<img class="thumb current" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+							</div>
+						</div>
+					</div>
+					<div class="job-feature">
+						<div id="johnson" class="job-image">
+							<img src="images/hero.jpg">
+						</div>
+						<div class="job-details">
+							<h3>Johnson</h3>
+							<p class="style"><span class="styleText">Style: </span>Cherry</p>
+							<p class="desc">Beautiful Alder and white paint with glazze. Bottle glazed windows. Carvings and reaised feet.</p>
+							<div class="job-gallery">
+								<img class="thumb current" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+							</div>
+						</div>
+					</div>
+					<div id="castleton" class="job-feature">
+						<div class="job-image">
+							<img src="images/hero.jpg">
+						</div>
+						<div class="job-details">
+							<h3>Castleton</h3>
+							<p class="style"><span class="styleText">Style: </span>Maple</p>
+							<p class="desc">Beautiful Alder and white paint with glazze. Bottle glazed windows. Carvings and reaised feet.</p>
+							<div class="job-gallery">
+								<img class="thumb current" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+								<img class="thumb" src="images/kitchen-oven-small.png">
+							</div>
+						</div>
+					</div>
+					<div id="hughes" style="height:400px"><h3>Hughes</h3></div>
+					<div id="watson" style="height:400px"><h3>Watson</h3></div>
+					<div id="markham" style="height:400px"><h3>Markham</h3></div>
+					<div id="morgan" style="height:400px"><h3>Morgan</h3></div>
+					<h2 id="bathrooms">Bathrooms</h2>
+					<div id="smith1" style="height:400px"><h3>Smith1</h3></div>
+					<div id="johnson1" style="height:400px"><h3>Johnson1</h3></div>
+					<div id="castleton1" style="height:400px"><h3>Castleton1</h3></div>
+					<h2 id="home-offices">Home Offices</h2>
+					<div id="smith2" style="height:400px"><h3>Smith2</h3></div>
+					<div id="johnson2" style="height:400px"><h3>Johnson2</h3></div>
+					<div id="castleton2" style="height:400px"><h3>Castleton2</h3></div>
+					<h2 id="entertainment-centers">Entertainment Centers</h2>
+					<div id="smith3" style="height:400px"><h3>Smith3</h3></div>
+					<div id="johnson3" style="height:400px"><h3>Johnson3</h3></div>
+					<div id="castleton3" style="height:400px"><h3>Castleton3</h3></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		{{ test }}
+	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+ 	<script src="js/app.js"></script>
+ 	<script src="js/mainCtrl.js"></script>
+ 	<script src="js/dataService.js"></script>
+ 	<!-- Directives -->
+ 	<script src="js/directives/headDir.js"></script>
+ 	<script src="js/directives/headerDir.js"></script>
+ 	<script src="js/directives/sidebarDir.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<div class="sidebar">
+	<button class="toggle"><i class="fa fa-angle-left"></i></button>
+	<nav class="sub-nav">
+		<ul>
+			<li ng-repeat="type in jobsMenu" id="{{ type.jobType | spaceToDash }}-tab" ng-class="{current: $index==0}"><a href="#{{ type.jobType | spaceToDash }}">{{ type.jobType }}</a>
+				<ul>
+					<li ng-repeat="job in type.jobs" id="{{ job | lowercase }}-tab" ng-class="{current: $index==0}"><a href="#{{ job | lowercase }}">{{ job }}</a></li>
+				</ul>
+			<li>
+		</ul>
+	</nav>
+</div>
