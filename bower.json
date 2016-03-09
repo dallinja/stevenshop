@@ -1,0 +1,23 @@
+{
+  "name": "stevenshop",
+  "homepage": "https://github.com/dallinja/stevenshop",
+  "authors": [
+    "Ty <ty.anderson.3@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "firebase": "^2.4.1",
+    "jquery": "^2.2.1"
+  }
+}

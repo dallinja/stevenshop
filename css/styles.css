@@ -52,6 +52,11 @@ button.btn {
 	font-size: 1em;
 	cursor: pointer;
 }
+img.loading-gif {
+    width: 100px;
+    margin: auto;
+    display: block;
+}
 .left {
 	float: left;
 }
@@ -298,10 +303,10 @@ nav.main div.current {
 }
 .job-image:before {
 	/* #link scrolls to the correct place */
-	display: block; 
-	content: " "; 
-	margin-top: -285px; 
-	height: 285px; 
+	display: block;
+	content: " ";
+	margin-top: -285px;
+	height: 285px;
 	visibility: hidden;
 }
 .job-feature {
