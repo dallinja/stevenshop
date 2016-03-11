@@ -1,23 +1,31 @@
 {
   "name": "stevenshop",
-  "homepage": "https://github.com/dallinja/stevenshop",
-  "authors": [
-    "Ty <ty.anderson.3@gmail.com>"
-  ],
-  "description": "",
-  "main": "",
-  "moduleType": [],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.5.0",
+    "angular": "^1.3.0",
+    "bootstrap": "^3.2.0",
     "firebase": "^2.4.1",
-    "jquery": "^2.2.1"
-  }
+    "angularfire": "^1.1.4",
+    "font-awesome": "fontawesome#^4.5.0",
+    "angular-ui-router": "^0.2.18"
+  },
+    "overrides": {
+        "bootstrap": {
+            "main": [
+                "dist/js/bootstrap.js",
+                "dist/css/bootstrap.css",
+                "less/bootstrap.less"
+            ]
+        },
+        "font-awesome": {
+          "main": [
+            "css/font-awesome.css"
+              ]
+          }
+    },
+  "devDependencies": {
+    "angular-mocks": "^1.3.0"
+  },
+  "appPath": "app",
+  "moduleName": "stevenshopApp"
 }
