@@ -1,0 +1,83 @@
+<div class="modal fade addJobModal" id="jobModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add a job</h3>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="well img-well">
+                                <div class="upload">
+                                    <input type="file" id="jobImgUpload" multiple>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-3 control-label">Job Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" ng-modal="name" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="style" class="col-sm-3 control-label">Style</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" ng-modal="style" placeholder="Ex. Alder & Paint">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="type" class="col-sm-3 control-label">Type</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" ng-model="type">
+                                            <!-- <optgroup ng-repeat="page in serviceData.pages" ng-if="page.type == 'List of jobs'" label="{{ page.title }}">
+                                                <option ng-repeat = "seg in page.segments">{{ seg }}</option>
+                                            </optgroup> -->
+                                            <optgroup label="Cabinetry">
+                                                <option value="kitchens">Kitchens</option>
+                                                <option value="bathrooms">Bathrooms</option>
+                                                <option value="home-offices">Home Offices</option>
+                                                <option value="entertainment-centers">Entertainment Centers</option>
+                                            </optgroup>
+                                            <optgroup label="Construction">
+                                                <option value="residential">Residential</option>
+                                                <option value="barns-and-shops">Barns and Shops</option>
+                                                <option value="other">Other</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- ng-options="item as item.label for item in items track by item.id"  -->
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea type="text" rows=3 class="form-control" ng-modal="style" placeholder=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-modal="pub" checked> Publish Immediately
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button ng-click="addJob(name)" type="button" class="btn btn-primary">Save changes</button>
+                    <!-- addJob(name, style, type, seg, desc, pub) -->
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

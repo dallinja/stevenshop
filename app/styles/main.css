@@ -50,14 +50,14 @@ button.toggle i {
 	line-height: 1em;
 	font-size: 3em;
 }
-button.btn {
+/*button.btn {
 	padding: 10px 15px;
 	background: #fff;
 	border: 1px solid #ddd;
 	border-radius: 4px;
 	font-size: 1em;
 	cursor: pointer;
-}
+}*/
 img.loading-gif {
     width: 100px;
     margin: auto;

@@ -31,110 +31,45 @@ nav li.active a {
 }
 .admin-content {
 	clear: both;
-	padding: 1rem;
+	padding: 1.5rem;
 }
 .admin-tools {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	margin:0 8px 25px;
+	margin: 1rem 0;
 }
 .admin-search {
-	padding: 5px;
 	width: 30%;
-	border: 1px solid #CCC;
-	background: #fff;
-	border-radius: 4px;
+
 }
 /*----------TABLE----------*/
 
-.Table {
+th, td {
+  text-align: center;
+}
+table .fa {
+  cursor: pointer;
+}
 
-  display: flex;
-  flex-flow: column nowrap;
-  /*box-pack: justify;*/
-  justify-content: space-between;
-  border: 1px solid #f2f2f2;
-  font-size: 1rem;
-  margin: 0.5rem;
-  line-height: 1.5;
+/*----------MODAL----------*/
+.img-well {
+  min-height: 350px;
 }
-.Table-header {
-  display: none;
+.upload {
+  text-align: center;
+  margin-top: 125px;
 }
-@media (min-width: 500px) {
-  .Table-header {
-    font-weight: 700;
-    background-color: #f2f2f2;
-  }
+.segment {
+	border: none;
+	background: #DDD;
 }
-.Table-row {
-  width: 100%;
+.segment-controls .glyphicon {
+	padding: 6px 12px;
 }
-.Table-row:nth-of-type(even) {
-  background-color: #f2f2f2;
+.glyphicon-plus {
+	color: green;
 }
-.Table-row:nth-of-type(odd) {
-  background-color: #ffffff;
-}
-@media (min-width: 500px) {
-  .Table-row {
-    display: flex;
-    flex-flow: row nowrap;
-  }
-  .Table-row:nth-of-type(even) {
-    background-color: #ffffff;
-  }
-  .Table-row:nth-of-type(odd) {
-    background-color: #f2f2f2;
-  }
-}
-.Table-row-item {
-  display: flex;
-  align-items: center;
-  flex-flow: row nowrap;
-  flex-grow: 1;
-  flex-basis: 0;
-  -ms-flex-preferred-size: 0;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  padding: 0.5em;
-  word-break: break-word;
-  justify-content: center;
-}
-.Table-row-item:before {
-  content: attr(data-header);
-  width: 30%;
-  font-weight: 700;
-}
-@media (min-width: 500px) {
-  .Table-row-item {
-    border: 1px solid #ffffff;
-    padding: 0.5em;
-  }
-  .Table-row-item:before {
-    content: none;
-  }
-}
-.fa-caret-up {
-	padding-left: 5px;
-}
-.f10 {
-	flex-grow: .7;
-}
-.f12 {
-	flex-grow: 1.2;
-}
-.f14 {
-	flex-grow: 1.4;
-}
-.f16 {
-	flex-grow: 1.6;
-}
-.f18 {
-	flex-grow: 1.8;
-}
-.f20 {
-	flex-grow: 2;
+.glyphicon-minus {
+	color: red;
 }
