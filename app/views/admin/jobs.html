@@ -1,7 +1,7 @@
 <div class="admin-tools">
-    <button class="btn left" type="button" data-toggle="modal" data-target=".addJobModal" data-backdrop="static">Add a job</button>
+    <button class="btn btn-default left" type="button" data-toggle="modal" data-target=".addJobModal" data-backdrop="static">Add a job</button>
 
-    <input class="admin-search right" placeholder="Search...">
+    <input ng-model="searchJobs" type="text" class="form-control pull-right admin-search" placeholder="Search...">
 </div>
 
 <div ng-show="serviceData.loading">
@@ -25,33 +25,18 @@
 
     <!-- Repeat Jobs -->
     <tbody>
-        <tr ng-repeat="job in serviceData.jobs">
-            <th data-header="Header1">{{job.id}}</th>
-            <th>{{job.name}}</th>
-            <th>{{job.style}}</th>
-            <th></th>
-            <th>{{job.description}}</th>
-            <th>{{job.images.length}}</th>
-            <th><i class="fa fa-check-square-o"></i></th>
-            <th><i class="fa fa-pencil-square-o"></i></th>
-            <th><i class="fa fa-trash-o" ng-click="delete(job.$id)"></i></th>
+        <tr ng-repeat="job in serviceData.jobs | filter: searchJobs">
+            <th data-header="Header1">{{job.order}}</th>
+            <td>{{job.name}}</td>
+            <td>{{job.style}}</td>
+            <td></td>
+            <td>{{job.description | cut:true:15 }}</td>
+            <td>{{job.images.lengtd}}</td>
+            <td class-"checkbox"><input type="checkbox" checked></td>
+            <td><i class="fa fa-pencil-square-o"></i></td>
+            <td><i class="fa fa-trash-o" ng-click="delete(job.$id)"></i></td>
         </tr>
     </tbody>
 </table>
-    <div class="modal fade addJobModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-large">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
+<jobs-modal></jobs-modal>
