@@ -2,15 +2,18 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Add a job</h3>
+                <h3 class="modal-title">Add Job</h3>
             </div>
             <form>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="well img-well">
+                                <div ng-repeat="img in images">
+                                    <img ng-src="{{img}}"/>
+                                </div>
                                 <div class="upload">
-                                    <input type="file" id="jobImgUpload" multiple>
+                                    <file-upload img="img"></file-upload>
                                 </div>
                             </div>
                         </div>

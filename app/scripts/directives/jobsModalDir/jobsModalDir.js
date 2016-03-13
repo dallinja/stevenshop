@@ -7,8 +7,8 @@ app.directive('jobsModal',function() {
 		},
 		link: function(scope, element, attr) {
 			scope.closeModal = function() {
-				$('#jobModal').modal('hide')
-			}
+				$('#jobModal').modal('hide');
+			};
 		},
 		controller: function($scope, adminService) {
 			$scope.addJob = function(name) {
@@ -25,7 +25,7 @@ app.directive('jobsModal',function() {
 				// 	}
 				// );
 				$scope.closeModal();
-			}
+			};
 		}
 	};
 });

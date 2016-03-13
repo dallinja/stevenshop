@@ -25,7 +25,7 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
             service.pages = response[1];
             service.loading = false;
             getSegmentList(service.pages);
-            console.log(service.pages);
+            // console.log(service.pages);
         })
 
         function getSegmentList(pages) {
