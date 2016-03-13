@@ -1,3 +1,4 @@
+<div ng-controller="jobsCtrl">
 <div class="admin-tools">
     <button class="btn btn-default left" type="button" data-toggle="modal" data-target=".addJobModal" data-backdrop="static">Add a job</button>
 
@@ -11,13 +12,27 @@
 <table class="table table-hover" ng-show="!serviceData.loading">
     <thead>
         <tr>
-            <th>Order<i class="fa fa-caret-up"></i></th>
-            <th>Job Name</th>
-            <th>Style</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Images</th>
-            <th>Publish</th>
+            <th><a ng-click="sort('order')">Order
+                <span ng-show="sortType == 'order' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'order' && sortReverse" class="fa fa-caret-up"></span></a></th>
+            <th><a ng-click="sort('name')">Job Name
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></a></th>
+            <th><a ng-click="sort('style')">Style
+                <span ng-show="sortType == 'style' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'style' && sortReverse" class="fa fa-caret-up"></span></a></th>
+            <th><a ng-click="sort('type')">Type
+                <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></th>
+            <th><a ng-click="sort('description')">Description
+                <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span></a></th>
+            <th><a ng-click="sort('images.length')">Images
+                <span ng-show="sortType == 'images.length' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'images.length' && sortReverse" class="fa fa-caret-up"></span></a></th>
+            <th><a ng-click="sort('published')">Publish
+                <span ng-show="sortType == 'published' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'published' && sortReverse" class="fa fa-caret-up"></span></a></th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -25,18 +40,44 @@
 
     <!-- Repeat Jobs -->
     <tbody>
-        <tr ng-repeat="job in serviceData.jobs | filter: searchJobs">
-            <th data-header="Header1">{{job.order}}</th>
-            <td>{{job.name}}</td>
-            <td>{{job.style}}</td>
-            <td></td>
-            <td>{{job.description | cut:true:15 }}</td>
-            <td>{{job.images.lengtd}}</td>
-            <td class-"checkbox"><input type="checkbox" checked></td>
-            <td><i class="fa fa-pencil-square-o"></i></td>
-            <td><i class="fa fa-trash-o" ng-click="delete(job.$id)"></i></td>
+        <tr ng-repeat="job in serviceData.jobs | orderBy:sortType:sortReverse | filter: searchJobs">
+            <th data-header="Header1">{{ job.order }}</th>
+            <td>{{ job.name }}</td>
+            <td>{{ job.style }}</td>
+            <td>{{ job.type }}</td>
+            <td>{{ job.description | cut:true:25 }}</td>
+            <td>{{ job.images.length }}</td>
+            <td class-"checkbox"><input type="checkbox" ng-model="job.published" ng-checked="job.published"></td>
+            <td ng-click="editJob()" data-toggle="modal" data-target=".addJobModal" data-backdrop="static"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
+            <td><span class="glyphicon glyphicon-trash" ng-click="delete(job.$id)" aria-hidden="true"></span></td>
         </tr>
     </tbody>
 </table>
 
 <jobs-modal></jobs-modal>
+</div>
+<p>TO DO</p>
+<ul>
+    <li>did it <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></li>
+    <lh>TABLE</lh>
+    <li>default orders by type, then order <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> sorda</li>
+    <li>clicking on headers sorts it (low priority) <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></li>
+    <li>drag and drop for order, goes after whatever it's placed beneath, updates all lower orders (low priority)</li>
+    <li>type in new order, updates all lower orders</li>
+    <lh>MODAL</lh>
+    <li>edit button opens modal with job details</li>
+    <li>changes in modal save to firebase</li>
+    <ul>
+        <lh>IMAGES</lh>
+        <li>uploads to firebase</li>
+        <li>list of images to reorder </li>
+        <li>dragging list to reorder and update firebase</li>
+        <li>showing images (low priority)</li>
+        <li>dragging for reordering images (low priority)</li>
+    </ul>
+    <lh>LOGIN</lh>
+    <li>setup firebase login</li>
+    <li>creat user menu</li>
+    <li>user menu signout</li>
+    <li>user menu settings</li>
+</ul>

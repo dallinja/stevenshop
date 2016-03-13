@@ -1,16 +1,14 @@
 <div class="admin-tools">
-    <button class="btn btn-default left" type="button" data-toggle="modal" data-target=".addPageModal" data-backdrop="static">Add a page</button>
-
+    <div></div>
     <input ng-model="searchPages" type="text" class="form-control pull-right admin-search" placeholder="Search...">
 </div>
 <table class="table table-hover" ng-show="!serviceData.loading">
     <thead>
         <tr>
-            <th>Order<i class="fa fa-caret-up"></i></th>
+            <th>Order</th>
             <th>Title</th>
             <th>Type</th>
             <th>Segments/Content</th>
-            <th>Publish</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -23,73 +21,24 @@
             <td>{{ page.title }}</td>
             <td>{{ page.type }}</td>
             <td><span ng-if="page.segments">{{ page.segmentsList | cut:true:50 }}</span><span ng-if="page.content">{{ page.content | cut:true:50}}</span></td>
-            <td class-"checkbox"><input type="checkbox" checked></td>
-            <td><i class="fa fa-pencil-square-o"></i></td>
+            <td data-toggle="modal" data-target=".addPageModal" data-backdrop="static"><i class="fa fa-pencil-square-o"></i></td>
             <td><i class="fa fa-trash-o" ng-click="delete(page.$id)"></i></td>
         </tr>
     </tbody>
 </table>
-<div class="modal fade addPageModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Add a page</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="name" class="col-sm-3 control-label">Page Title</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="title" placeholder="Title">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="type" class="col-sm-3 control-label">Type</label>
-                                <div class="col-sm-9">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="types" id="type1" value="option1" checked>
-                                            List of jobs
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="types" id="type2" value="option2">
-                                            Static page
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="description" class="col-sm-3 control-label">Segments</label>
-                                <div class="col-sm-9">
-                                    <div class="col-xs-8">
-                                        <input type="text" class="form-control segment" placeholder="Type a new segment">
-                                    </div>
-                                    <div class="col-xs-4 segment-controls">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-9">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" checked> Publish Immediately
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
+<pages-modal></pages-modal>
+
+<p>TO DO</p>
+<ul>
+    <li>remove "Add Pages" button <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></li>
+    <lh>MODAL</lh>
+    <li>have modal bring up page info</li>
+    <li>changes in modal update firebase</li>
+    <ul>
+        <lh>SEGMENTS</lh>
+        <li>+ and - buttons for segments work</li>
+        <li>dragging for reordering segments</li>
+    </ul>
+    <li>remove publish from html and firebase <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></li>
+</ul>

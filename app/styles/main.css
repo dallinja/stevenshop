@@ -112,6 +112,9 @@ nav.main div.current {
 	font-size: 1.8em;
 	width: 180px;
 }
+.user-menu-user {
+	display: none;
+}
 @media (max-width: 1200px) {
 	.phone p {
 		width: 160px;
@@ -154,7 +157,7 @@ nav.main div.current {
 	}
 }
 /*-------MAIN-------*/
-.container {
+.container, .admin-container {
 	position: relative;
 	margin: 90px 40px 0;
 	max-width: 1600px;
@@ -162,14 +165,14 @@ nav.main div.current {
 }
 
 @media (max-width: 1100px) {
-	.container {
+	.container, .admin-container {
 		margin: 70px 0 0;
 		margin-bottom: -150px;
 	}
 
 }
 @media (max-width: 767px) {
-	.container {
+	.container, .admin-container {
 		margin: 56px 0 0;
 		margin-bottom: -150px;
 	}

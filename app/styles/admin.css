@@ -1,5 +1,7 @@
 .admin-container {
-	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
 	max-width: 1000px;
 	/*border: 1px solid #CCC;*/
 }
@@ -48,7 +50,7 @@ nav li.active a {
 th, td {
   text-align: center;
 }
-table .fa {
+table .fa, table th a, table .glyphicon {
   cursor: pointer;
 }
 

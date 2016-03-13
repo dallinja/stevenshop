@@ -3,10 +3,11 @@
 		<a href="/#/"><img src="/images/logo.png"></a>
 	</div>
 	<nav class="main">
-		<div class="current"><a href="#">Cabinetry</a></div>
-		<div><a href="#">Construction</a></div>
-		<div><a href="#">About</a></div>
+		<div ng-repeat="page in pagesData.pages" ui-sref-active="current"><a ui-sref="{{ page.state }}">{{ page.title }}</a></div>
 	</nav>
-	<div class="phone"><p>(916) 847-<a href="#/login">2482</a></p><button class="toggle"><i class="fa fa-bars"></i></button></div>
-
+	<div class="phone">
+		<p ng-class="{hidden: admin}">(916) 847-<a href="#/login">2482</a></p>
+		<div class="user-menu-user" ng-class="{show: admin}">Hi, Steven <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+		<button class="toggle"><i class="fa fa-bars"></i></button>
+	</div>
 </header>

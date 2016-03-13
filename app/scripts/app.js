@@ -11,6 +11,16 @@ var app = angular.
                 templateUrl: 'views/main.html',
                 controllerUrl: 'controllers/main.js'
             }).
+            state('construction', {
+                url: '/construction',
+                templateUrl: 'views/main.html',
+                controllerUrl: 'controllers/main.js'
+            }).
+            state('about', {
+                url: '/about',
+                templateUrl: 'views/about.html',
+                controllerUrl: 'controllers/main.js'
+            }).
             state('login', {
                 url: '/login',
                 templateUrl: 'views/login.html'
@@ -23,7 +33,8 @@ var app = angular.
             }).
             state('admin.jobs', {
                 url: '/jobs',
-                templateUrl: 'views/admin/jobs.html'
+                templateUrl: 'views/admin/jobs.html',
+                controllerUrl: 'controllers/jobsCtrl.js'
             }).
             state('admin.pages', {
                 url: '/pages',

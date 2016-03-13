@@ -10,8 +10,14 @@ app.controller('adminCtrl', ['$scope', 'adminService', function($scope, service)
 
     // Delete
     $scope.delete = function (id) {
-        service.delete(id);
+        var defintelyDelete = confirm('Are you sure you want to delete this job? It will be gone forever!');
+        if (defintelyDelete) {
+            service.delete(id);
+        }
     };
+    // $scope.inputToggle = function() {
+    //     service.inputToggle();
+    // }
 }])
 .filter('cut', function () {
     return function (value, wordwise, max, tail) {
