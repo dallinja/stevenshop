@@ -3,12 +3,12 @@
 
 <site-header></site-header>
 
-<div class="container" ng-controller="adminCtrl">
-	<div class="admin-container">
+<!-- <div class="container"> -->
+	<div class="admin-container"  ng-controller="adminCtrl">
 		<nav>
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="/#/admin/jobs">Jobs</a></li>
-				<li><a href="/#/admin/pages">Pages</a></li>
+				<li ui-sref-active="active"><a ui-sref="admin.jobs">Jobs</a></li>
+				<li ui-sref-active="active"><a ui-sref="admin.pages">Pages</a></li>
 			</ul>
 		</nav>
 		<div class="admin-content">
@@ -19,4 +19,4 @@
 
 	</div>
 
-</div>
+<!-- </div> -->

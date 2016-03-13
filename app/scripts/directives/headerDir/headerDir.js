@@ -5,10 +5,16 @@ app.directive('siteHeader',function() {
 		scope: {
 
 		},
-		// controller: function($scope) {
-		// 	$scope.clicky = function(color) {
-		// 		$scope.func({inputColor:color});
-		// 	}
-		// }
+		link: function (scope, element, attr) {
+		},
+		controller: function($scope, headerService, $location) {
+				$scope.pagesData = headerService.getNav();
+				$scope.curUrl = $location.path();
+				if ($location.path().indexOf('admin') != -1) {
+					$scope.admin = true;
+				} else {
+					$scope.admin = false;
+				}
+		}
 	};
 });

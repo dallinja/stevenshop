@@ -25,7 +25,6 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
             service.pages = response[1];
             service.loading = false;
             getSegmentList(service.pages);
-            // console.log(service.pages);
         })
 
         function getSegmentList(pages) {
@@ -47,24 +46,34 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
 
         return service;
     };
+    // service.inputToggle = function() {
+    //     var ref = new Firebase('https://stevenshop.firebaseio.com/jobs');
+    //     var job = ref.push();
+    //     job.set({'published': true});
+    // }
     // {name, style, type, seg, desc, pub, imgUrls}
     service.addJob = function (newJob) {
         var ref = new Firebase('https://stevenshop.firebaseio.com/jobs');
         var job = ref.push();
-        job.set({'name': newJob});
-        // job.set({
-        //     'images': {
-        //         'img1': '/someurl.jpg'
-        //     },
-        //     'description': job.desc,
-        //     'order': job.order,
-        //     'name': job.name,
-        //     'style': job.style,
-        //     'segment': job.seg,
-        //     'type': job.type,
-        //     'published': job.pub
-        // });
+        // job.set({'name': newJob});
+        job.set({
+            'images': {
+                'img1': '/someurl.jpg'
+            },
+            'description': newJob.desc,
+            'order': newJob.order,
+            'name': newJob.name,
+            'style': newJob.style,
+            'type': newJob.type,
+            'published': newJob.pub
+        });
     };
+
+    service.editJob = function () {
+        var jobRef = new Firebase('https://stevenshop.firebaseio.com/jobs');
+
+        return service;
+    }
 
     service.delete = function (id) {
         var ref = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
