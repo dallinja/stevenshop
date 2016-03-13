@@ -8,7 +8,7 @@ app.directive('jobsModal',function() {
 		link: function(scope, element, attr) {
 			scope.pub = true;
 			scope.closeModal = function() {
-				$('#jobModal').modal('hide')
+				$('#jobModal').modal('hide');
 			};
 		},
 		controller: function($scope, adminService, $timeout) {
@@ -43,7 +43,7 @@ app.directive('jobsModal',function() {
 					$scope.type = "";
 					$scope.desc = "";
 				}, 1000);
-			}
+			};
 		}
 	};
 });

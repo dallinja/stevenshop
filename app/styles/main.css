@@ -159,7 +159,7 @@ nav.main div.current {
 /*-------MAIN-------*/
 .container, .admin-container {
 	position: relative;
-	margin: 90px 40px 0;
+	margin: 90px auto 0;
 	max-width: 1600px;
 	flex: 1;
 }
