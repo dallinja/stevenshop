@@ -39,34 +39,8 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
                 }
             };
         }
-        // jobsObj.$loaded().then(function(response) {
-        //     service.jobs = response;
-        //     service.loading = false;
-        // });
 
         return service;
-    };
-    // service.inputToggle = function() {
-    //     var ref = new Firebase('https://stevenshop.firebaseio.com/jobs');
-    //     var job = ref.push();
-    //     job.set({'published': true});
-    // }
-    // {name, style, type, seg, desc, pub, imgUrls}
-    service.addJob = function (newJob) {
-        var ref = new Firebase('https://stevenshop.firebaseio.com/jobs');
-        var job = ref.push();
-        // job.set({'name': newJob});
-        job.set({
-            'images': {
-                'img1': '/someurl.jpg'
-            },
-            'description': newJob.desc,
-            'order': newJob.order,
-            'name': newJob.name,
-            'style': newJob.style,
-            'type': newJob.type,
-            'published': newJob.pub
-        });
     };
 
     return service;

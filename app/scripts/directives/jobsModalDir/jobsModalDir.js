@@ -3,7 +3,10 @@ app.directive('jobsModal',function() {
 		restrict: 'AE',
 		templateUrl: 'scripts/directives/jobsModalDir/jobsModalDir.html',
 		scope: {
-
+			deleteJob: '&',
+			updateJob: '&',
+			currentJobId: '=',
+			images: '='
 		},
 		link: function(scope, element, attr) {
 			scope.pub = true;

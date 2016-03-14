@@ -1,4 +1,4 @@
-app.controller('MainCtrl',['$scope', 'dataService', 'jobsService', function($scope, dataService, jobsService) {
+app.controller('MainCtrl',['$scope', 'dataService', 'jobService', function($scope, dataService, jobService) {
 
 	// Set loading gif
 	$scope.serviceResponse = {
@@ -6,7 +6,7 @@ app.controller('MainCtrl',['$scope', 'dataService', 'jobsService', function($sco
 	};
 
 	// Get jobs
-    $scope.serviceResponse = jobsService.query();
+    $scope.serviceResponse = jobService.query();
 
 	// Footer
 	$scope.test = dataService.test;
