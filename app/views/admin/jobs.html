@@ -1,6 +1,6 @@
 <div ng-controller="jobsCtrl">
 <div class="admin-tools">
-    <button class="btn btn-default left" type="button" data-toggle="modal" data-target=".addJobModal" data-backdrop="static">Add Job</button>
+    <button class="btn btn-default left" type="button" data-toggle="modal" data-target=".addJobModal" data-backdrop="static" ng-click="addJob()">Add Job</button>
 
     <input ng-model="searchJobs" type="text" class="form-control pull-right admin-search" placeholder="Search...">
 </div>
@@ -54,7 +54,7 @@
     </tbody>
 </table>
 
-<jobs-modal></jobs-modal>
+<jobs-modal delete-job="deleteJob()" update-job="updateJob()" current-job-id="currentJobId" images="images"></jobs-modal>
 </div>
 <p>TO DO</p>
 <ul>

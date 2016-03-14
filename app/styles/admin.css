@@ -27,8 +27,8 @@ nav li a {
 nav li.active a {
 	border: 1px solid #DDD;
 	border-bottom: 1px solid transparent;
-	border-top-left-radius: 4px; 
-	border-top-right-radius: 4px; 
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
 	background: #fff;
 }
 .admin-content {
@@ -74,4 +74,15 @@ table .fa, table th a, table .glyphicon {
 }
 .glyphicon-minus {
 	color: red;
+}
+
+/*----------ADD JOB----------*/
+.uploaded-image-div {
+	display: inline-block;
+	width: 116px;
+	border: 8px solid #BCBCBC;
+	margin: 5px;
+}
+.uploaded-image {
+	width: 100px;
 }

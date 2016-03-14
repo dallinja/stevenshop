@@ -29,8 +29,8 @@
                                 <p class="style"><span class="styleText">Style: </span>{{job.style}}</p>
                                 <p class="desc">{{job.description}}</p>
                                 <div class="job-gallery">
-                                    <div class="thumb" ng-repeat="image in job.images">
-                                        <img class="thumb" ng-src="images/uploads/thumbnails/{{image.url}}">
+                                    <div ng-repeat="image in job.images">
+                                        <img class="thumb" ng-src="{{image.base64String}}">
                                     </div>
                                 </div>
                             </div>
