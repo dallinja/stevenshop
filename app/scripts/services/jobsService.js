@@ -18,5 +18,12 @@ app.factory('jobsService', ['$firebase', '$firebaseArray', '$q', function($fireb
         return service;
     };
 
+    service.editJob = function (id) {
+        var jobRef = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
+        service.job = jobRef;
+
+        return service;
+    }
+
     return service;
 }]);

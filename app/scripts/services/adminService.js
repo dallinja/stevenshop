@@ -69,16 +69,5 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
         });
     };
 
-    service.editJob = function () {
-        var jobRef = new Firebase('https://stevenshop.firebaseio.com/jobs');
-
-        return service;
-    }
-
-    service.delete = function (id) {
-        var ref = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
-        ref.remove();
-    };
-
     return service;
 }]);

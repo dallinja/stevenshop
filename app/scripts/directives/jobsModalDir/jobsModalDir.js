@@ -13,16 +13,6 @@ app.directive('jobsModal',function() {
 		},
 		controller: function($scope, adminService, $timeout) {
 
-			$scope.editJob = function() {
-				adminService.editJob().then(function (data) {
-					$scope.name
-					$scope.style
-					$scope.type
-					$scope.description
-					$scope.published
-				})
-			}
-
 			$scope.addJob = function(name, style, type, desc, pub) {
 				// adminService.addJob(name);
 				adminService.addJob(
