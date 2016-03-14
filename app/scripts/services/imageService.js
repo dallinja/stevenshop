@@ -2,7 +2,7 @@ app.factory('imageService', ['$firebase', '$firebaseArray', '$q', function($fire
     var service = {};
 
     // Global
-    var ref = new Firebase("https://stevenshop.firebaseio.com/images");
+    var ref = new Firebase("https://stevenshop.firebaseio.com/jobs");
 
     // Loading
 	service.loading = true;
@@ -11,11 +11,11 @@ app.factory('imageService', ['$firebase', '$firebaseArray', '$q', function($fire
     service.query = function () {
         // Firebase URL
         var imageObjs = new $firebaseArray(ref);
+        // TODO: CAHNGE THIS REF ^^ to get from a job
 
         // On complete
         imageObjs.$loaded().then(function(response) {
             service.images = response;
-            console.log(response);
             service.loading = false;
         });
 
@@ -23,8 +23,13 @@ app.factory('imageService', ['$firebase', '$firebaseArray', '$q', function($fire
     };
 
     // CREATE
-    service.create = function (newImageString) {
+    service.create = function (newImageString, jobId) {
+        // Create promise
         var deferred = $q.defer();
+        // Update ref for Job ID
+        var ref = new Firebase("https://stevenshop.firebaseio.com/jobs/" + jobId + '/images/');
+
+        // Push object
         var image = ref.push();
         image.set(
             // Push this object to firebase
@@ -36,8 +41,8 @@ app.factory('imageService', ['$firebase', '$firebaseArray', '$q', function($fire
                 } else {
                     // Succesfull return
                     deferred.resolve(
-                        // Query all images
-                        service.query()
+                        // Return uploaded base64 string
+                        newImageString
                     );
                 }
             }
