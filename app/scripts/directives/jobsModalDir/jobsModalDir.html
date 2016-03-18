@@ -25,20 +25,20 @@
                                 <div class="form-group">
                                     <label for="name" class="col-sm-3 control-label">Job Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" ng-model="name" placeholder="Last Name">
+                                        <input type="text" class="form-control" ng-model="job.name" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="style" class="col-sm-3 control-label">Style</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" ng-model="style" placeholder="Ex. Alder & Paint">
+                                        <input type="text" class="form-control" ng-model="job.style" placeholder="Ex. Alder & Paint">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="type" class="col-sm-3 control-label">Type</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" ng-model="type">
+                                        <select class="form-control" ng-model="job.type">
                                             <!-- <optgroup ng-repeat="page in serviceData.pages" ng-if="page.type == 'List of jobs'" label="{{ page.title }}">
                                                 <option ng-repeat = "seg in page.segments">{{ seg }}</option>
                                             </optgroup> -->
@@ -62,14 +62,14 @@
                                 <div class="form-group">
                                     <label for="description" class="col-sm-3 control-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" rows=3 class="form-control" ng-model="desc" placeholder=""></textarea>
+                                        <textarea type="text" rows=3 class="form-control" ng-model="job.description" placeholder=""></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" ng-model="pub" checked> Publish Immediately
+                                                <input type="checkbox" ng-model="job.published" checked> Publish Immediately
                                             </label>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" ng-click="deleteJob()">Cancel</button>
-                    <button ng-click="updateJob(name, style, type, desc, pub)" type="button" class="btn btn-primary">Save changes</button>
+                    <button ng-click="updateJob(job)" type="button" class="btn btn-primary">Save changes</button>
                     <!-- addJob(name, style, type, seg, desc, pub) -->
                 </div>
             </form>
