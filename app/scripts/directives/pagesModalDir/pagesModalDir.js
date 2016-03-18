@@ -6,30 +6,25 @@ app.directive('pagesModal',function() {
 			jobName: '='
 		},
 		link: function(scope, element, attr) {
-			scope.pub = true;
 			scope.closeModal = function() {
 				$('#pageModal').modal('hide')
 			};
 		},
 		controller: function($scope, adminService, $timeout) {
-			$scope.addPage = function(name, style, type, desc, pub) {
 				// adminService.addJob(name);
-				adminService.addPage(
-					{
-						order: 1,
-						name: name,
-						style: style,
-						type: type
-					}
-				);
-				$scope.closeModal();
+				$scope.updatePage= function (page) {
+					pagesService.getPage(page).then(function() {
+						$('#pageModal').modal('hide');
+					});
+					
+				}
 				// $timeout(function() {
 				// 	$scope.name = "";
 				// 	$scope.style = "";
 				// 	$scope.type = "";
 				// 	$scope.desc = "";
 				// }, 1000);
-			}
+
 		}
 	};
 });

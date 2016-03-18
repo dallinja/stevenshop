@@ -38,6 +38,7 @@ var app = angular.
             }).
             state('admin.pages', {
                 url: '/pages',
-                templateUrl: 'views/admin/pages.html'
+                templateUrl: 'views/admin/pages.html',
+                controllerUrl: 'controllers/pagesCtrl.js'
             });
         });

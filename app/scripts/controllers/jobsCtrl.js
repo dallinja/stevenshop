@@ -8,19 +8,11 @@ app.controller('jobsCtrl', ['$scope', 'jobService', function($scope, jobService)
 		$scope.sortType = title;
 	}
 	$scope.editJob = function(job) {
-		$('#jobModal').modal('show');
+		$('#jobModal').modal({backdrop: 'static'});
 		// jobsService.editJob().then(function (data) {
-			console.log(job);
-			console.log(job.name);
-			$scope.name = job.name;
-			$scope.style = job.style;
-			$scope.type = job.type;
-			$scope.description = job.description;
-			$scope.published = job.published;
-		// })
-		$scope.addEditJob = function (job) {
+			$scope.job = job;
 
-		}
+		// })
 	}
 
 	// Add job on button click
