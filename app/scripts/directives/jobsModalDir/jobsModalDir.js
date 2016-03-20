@@ -5,7 +5,8 @@ app.directive('jobsModal',function() {
 		scope: {
 			deleteJob: '&',
 			currentJobId: '=',
-			images: '='
+			images: '=',
+			job: '='
 		},
 		link: function(scope, element, attr) {
 			scope.pub = true;
@@ -13,7 +14,12 @@ app.directive('jobsModal',function() {
 				$('#jobModal').modal('hide');
 			};
 		},
-		controller: function($scope, adminService, jobService, $timeout) {
+		controller: function($scope, adminService, jobService, jobsService $timeout) {
+
+			// $scope.updateJob= function (job) {
+			// 	jobsService.getJob(job);
+			// 	$('#jobModal').modal('hide');
+			// }
 
 			$scope.addJob = function(name, style, type, desc, pub) {
 				// adminService.addJob(name);
