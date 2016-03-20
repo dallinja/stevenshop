@@ -8,8 +8,12 @@ app.directive('fileUpload', function() {
 			images: '='
 		},
 		link: function(scope, element, attr) {
+			// When something is uploaded
 			element.bind('change', function (changeEvent) {
                 scope.$apply(function () {
+					// Add uploading img gif
+					scope.addTempImg();
+
                     // Get file from DOM
                     var file = changeEvent.target.files[0];
 
@@ -43,12 +47,19 @@ app.directive('fileUpload', function() {
 					function (response) {
 	                    if (response) {
 							// Upload succesfull
+							// Remove temporary loading gif and add real image
+							$scope.images.pop();
 	                        $scope.images.push(response);
 	                    } else {
 	                        // Upload failed error
 	                    }
                 	});
             };
+
+			// Add temporary loading image to array
+			$scope.addTempImg = function () {
+				$scope.images.push('images/loading.gif');
+			};
         }
 	};
 });

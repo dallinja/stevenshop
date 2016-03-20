@@ -23,7 +23,8 @@ var app = angular.
             }).
             state('login', {
                 url: '/login',
-                templateUrl: 'views/login.html'
+                templateUrl: 'views/login.html',
+                controllerUrl: 'controllers/adminCtrl.js'
             }).
             state('admin', {
                 abstract: true,
