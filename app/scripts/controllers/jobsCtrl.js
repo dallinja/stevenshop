@@ -1,4 +1,17 @@
-app.controller('jobsCtrl', ['$scope', 'jobService', function($scope, jobService) {
+app.controller('jobsCtrl', ['$scope', 'jobService', '$state', function($scope, jobService, $state) {
+	// Check if logged in
+    var ref = new Firebase("https://stevenshop.firebaseio.com");
+    ref.onAuth(
+        function (authData) {
+            if (authData) {
+				// If logged in
+            } else {
+				// If not authenticated, send to login
+                $state.go('login');
+            }
+        }
+    );
+
 	$scope.sortType = ['type','order'];
 	$scope.sortReverse = false;
 	$scope.sort = function(title) {
@@ -35,11 +48,6 @@ app.controller('jobsCtrl', ['$scope', 'jobService', function($scope, jobService)
 				}
 			}
 		);
-	};
-
-	// Update job on save button click
-	$scope.updateJob = function () {
-
 	};
 
 	// Delete job on cancel

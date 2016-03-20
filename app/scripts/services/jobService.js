@@ -54,22 +54,20 @@ app.factory('jobService', ['$firebase', '$firebaseArray', '$q', function($fireba
     };
 
     // Update job
-    service.update = function (values) {
+    service.update = function (currentJobId, values) {
         // Create promise
         var deferred = $q.defer();
-        var job = ref.push();
 
-        // Push the job
-        job.set({
-            'images': {
-                'img1': '/someurl.jpg'
-            },
-            'description': values.desc,
-            'order': values.order,
-            'name': values.name,
-            'style': values.style,
-            'type': values.type,
-            'published': values.pub
+        // Update job
+        var updateRef = new Firebase("https://stevenshop.firebaseio.com/jobs/" + currentJobId);
+        updateRef.update({
+            // Images update on their own apart from here
+            'description': values.desc || null,
+            'order': 1,
+            'name': values.name || 'No name',
+            'style': values.style || null,
+            'type': values.type || null,
+            'published': values.pub || false
         },
         // On completion
         function (error) {
@@ -77,12 +75,12 @@ app.factory('jobService', ['$firebase', '$firebaseArray', '$q', function($fireba
                 deferred.resolve(false);
             } else {
                 // Succesfull return
-                deferred.resolve(
-                    // Query all images
-                    service.query()
-                );
+                deferred.resolve(true);
             }
         });
+
+        // Return promise
+        return deferred.promise;
     };
 
     // Delete job
@@ -91,8 +89,8 @@ app.factory('jobService', ['$firebase', '$firebaseArray', '$q', function($fireba
         var deferred = $q.defer();
 
         // Delete object at this url
-        var ref = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
-        ref.remove(
+        var delRef = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
+        delRef.remove(
             // When done
             function (error) {
                 if (error) {
