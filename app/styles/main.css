@@ -273,6 +273,21 @@ nav.main div.current {
 .main-flow {
 	margin-top: 90px;
 }
+.login-form label {
+	margin-top: 10px;
+}
+.login-form button {
+	margin-top: 20px;
+}
+.logging-in-gif-div {
+    position: relative;
+    top: -45px;
+}
+.loading-gif-button {
+    width: 45px;
+    display: block;
+    margin: auto;
+}
 @media (max-width: 1100px) {
 	.search {
 		padding: 12px 20px;
@@ -370,8 +385,14 @@ p.style span {
 	border: 3px solid #00B3F0;
 	margin: 3px 0;
 }
+.thumbs-div {
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    margin: 3px;
+}
 .thumb {
-	margin: 3px;
+    width: 75px;
 }
 @media (max-width: 1100px) {
 	.job-image {

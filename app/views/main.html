@@ -29,7 +29,7 @@
                                 <p class="style"><span class="styleText">Style: </span>{{job.style}}</p>
                                 <p class="desc">{{job.description}}</p>
                                 <div class="job-gallery">
-                                    <div ng-repeat="image in job.images">
+                                    <div class="thumbs-div" ng-repeat="image in job.images">
                                         <img class="thumb" ng-src="{{image.base64String}}">
                                     </div>
                                 </div>

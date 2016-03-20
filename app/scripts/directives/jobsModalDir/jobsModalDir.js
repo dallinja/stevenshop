@@ -4,7 +4,6 @@ app.directive('jobsModal',function() {
 		templateUrl: 'scripts/directives/jobsModalDir/jobsModalDir.html',
 		scope: {
 			deleteJob: '&',
-			updateJob: '&',
 			currentJobId: '=',
 			images: '='
 		},
@@ -14,7 +13,7 @@ app.directive('jobsModal',function() {
 				$('#jobModal').modal('hide');
 			};
 		},
-		controller: function($scope, adminService, $timeout) {
+		controller: function($scope, adminService, jobService, $timeout) {
 
 			$scope.addJob = function(name, style, type, desc, pub) {
 				// adminService.addJob(name);
@@ -37,9 +36,37 @@ app.directive('jobsModal',function() {
 					$scope.desc = "";
 				}, 1000);
 			};
+
+			// Update job on save button click
+			$scope.updateJob = function () {
+		        // Build values
+		        var values = {
+		            name: $scope.name,
+		            style: $scope.style,
+		            type: $scope.type,
+		            desc: $scope.desc,
+		            pub: $scope.pub,
+		            images: $scope.images
+		        };
+
+		        // Run update from service
+		        jobService.update($scope.currentJobId, values).then(
+		            function (response) {
+						if (response) {
+							// Success
+		                    $scope.closeModal();
+							// Clear the fields
+							$scope.name = '';
+							$scope.style = '';
+							$scope.type = '';
+							$scope.desc = '';
+						} else {
+							// Failue
+							console.log('Update failed');
+						}
+					}
+		        );
+			};
 		}
 	};
 });
-
-
-// addJob(name, style, type, seg, desc, pub, imgUrls)
