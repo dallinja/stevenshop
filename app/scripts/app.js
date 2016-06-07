@@ -4,10 +4,10 @@ var app = angular.
         'ui.router'
     ]).
     config(function($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/cabinetry');
             $stateProvider.
             state('home', {
-                url: '/',
+                url: '/cabinetry',
                 templateUrl: 'views/main.html',
                 controllerUrl: 'controllers/main.js'
             }).

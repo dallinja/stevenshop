@@ -53,6 +53,12 @@ th, td {
 table .fa, table th a, table .glyphicon {
   cursor: pointer;
 }
+.firstJob  {
+	border-top: 4px solid #ccc;
+}
+/*.lastJob {
+	border-top: 6px solid #c09;
+}*/
 
 /*----------MODAL----------*/
 .img-well {
