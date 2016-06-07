@@ -22,6 +22,37 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
 
         getAdminData().then(function (response) {
             service.jobs = response[0];
+            for (var job in service.jobs) {
+                if (parseInt(job) || job == 0) {
+                    service.jobs[job].imagesLength = Object.keys(service.jobs[job].images).length;
+                }
+            }
+            // a temporary quick way to sort the jobs on the admin page
+            for (var job in service.jobs) {
+                switch (service.jobs[job].type) {
+                    case 'Kitchens':
+                        service.jobs[job].segOrder = 10;
+                        break;
+                    case 'Bathrooms':
+                        service.jobs[job].segOrder = 11;
+                        break;
+                    case 'Home Offices':
+                        service.jobs[job].segOrder = 12;
+                        break;
+                    case 'Entertainment Centers':
+                        service.jobs[job].segOrder = 13;
+                        break;
+                    case 'Residential':
+                        service.jobs[job].segOrder = 20;
+                        break;
+                    case 'Barns and Shops':
+                        service.jobs[job].segOrder = 21;
+                        break;
+                    case 'Other':
+                        service.jobs[job].segOrder = 22;
+                }
+            }
+
             service.pages = response[1];
             service.loading = false;
             getSegmentList(service.pages);

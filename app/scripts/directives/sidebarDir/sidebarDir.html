@@ -1,12 +1,17 @@
 <div class="sidebar">
-	<button class="toggle"><i class="fa fa-angle-left"></i></button>
+	<div class="toggle" ng-click="toggleMenu()"><span class="glyphicon" ng-class="toggleOpen ? 'glyphicon-menu-left' : 'glyphicon-menu-right'" aria-hidden="true"></span></div>
 	<nav class="sub-nav">
 		<ul>
-			<li ng-repeat="type in jobsMenu" id="{{ type.jobType | spaceToDash }}-tab" ng-class="{current: $index==0}"><a href="#{{ type.jobType | spaceToDash }}">{{ type.jobType }}</a>
+			<li ng-repeat="type in jobsMenu.page" id="{{ type[0].type | spaceToDash }}-tab" ng-class="{current: $index==0}"><a href="#/cabinetry#{{ type[0].type | spaceToDash }}">{{ type[0].type }}</a>
+				<ul>
+					<li ng-repeat="job in type" id="{{ job.name | lowercase }}-tab" ng-class="{current: $index==0}"><a href="#/cabinetry#{{ job.name | lowercase }}">{{ job.name }}</a></li>
+				</ul>
+			<li>
+			<!-- <li ng-repeat="type in jobsMenu" id="{{ type.jobType | spaceToDash }}-tab" ng-class="{current: $index==0}"><a href="#{{ type.jobType | spaceToDash }}">{{ type.jobType }}</a>
 				<ul>
 					<li ng-repeat="job in type.jobs" id="{{ job | lowercase }}-tab" ng-class="{current: $index==0}"><a href="#{{ job | lowercase }}">{{ job }}</a></li>
 				</ul>
-			<li>
+			<li> -->
 		</ul>
 	</nav>
 </div>

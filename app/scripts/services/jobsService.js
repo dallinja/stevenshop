@@ -1,22 +1,55 @@
 app.factory('jobsService', ['$firebase', '$firebaseArray', '$q', function($firebase, $firebaseArray, $q) {
     var service = {};
 
+    // Firebase ref
+    var jobsRef = new Firebase("https://stevenshop.firebaseio.com/jobs");
+    var pagesRef = new Firebase("https://stevenshop.firebaseio.com/pages");
+
     // Loading
 	service.loading = true;
 
-    service.query = function () {
-        // Firebase URL
-        var jobsRef = new Firebase("https://stevenshop.firebaseio.com/jobs");
-        var jobsObj = new $firebaseArray(jobsRef);
+    // service.query = function (path) {
+    //     var index;
+    //     if (path.indexOf('cabinetry') != -1) {
+    //         index = 0;
+    //     } else if (path.indexOf('construction') != -1){
+    //         index = 1;
+    //     }
+    //     // var key = ref.key();
+    //     var jobsObj = new $firebaseArray(jobsRef);
+    //     var pagesObj = new $firebaseArray(pagesRef);
+    //     var deferred = $q.defer();
 
-        // On complete
-        jobsObj.$loaded().then(function(response) {
-            service.jobs = response;
-            service.loading = false;
-        });
+    //     // On complete
+    //     var getAllData = function () {
+    //         var getJobs = jobsObj.$loaded();
+    //         var getPages = pagesObj.$loaded();
+    //         return $q.all([getJobs, getPages]);
+    //     }
 
-        return service;
-    };
+    //     getAllData().then(function (response) {
+    //         service.jobs = response[0];
+    //         service.pages = response[1];
+    //         service.loading = false;
+    //         createJobArray(service.pages, service.jobs);
+    //     })
+
+    //     function createJobArray(pages, jobs) {
+    //         service.page = [];
+    //         for (var segment in pages[index].categories) {
+    //             var seg = [];
+    //             for (var job in jobs) {
+    //                 if (jobs[job].type === pages[index].categories[segment].name) {
+    //                     seg.push(jobs[job]);
+    //                 }
+    //                 seg.push()
+    //             }
+    //             service.page.push(seg)
+    //         };
+    //     }
+
+    //     return service;
+    // };
 
     service.editJob = function (id) {
         var jobRef = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
@@ -24,8 +57,7 @@ app.factory('jobsService', ['$firebase', '$firebaseArray', '$q', function($fireb
 
         return service;
     }
-    service.getJob = function (job) {
-        var jobsRef = new Firebase('https://stevenshop.firebaseio.com/jobs');
+    service.getAndSaveJob = function (job) {
         var jobsArray = $firebaseArray(jobsRef);
         jobsArray.$loaded().then(function() {
             var jobObj = jobsArray.$getRecord(job.$id);

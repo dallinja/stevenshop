@@ -12,9 +12,9 @@
 <table class="table table-hover" ng-show="!serviceData.loading">
     <thead>
         <tr>
-            <th><a ng-click="sort('order')">Order
-                <span ng-show="sortType == 'order' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'order' && sortReverse" class="fa fa-caret-up"></span></a></th>
+            <th><a ng-click="sort(['segOrder','order'])">Order
+                <span ng-show="bars && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="bars && sortReverse" class="fa fa-caret-up"></span></a></th>
             <th><a ng-click="sort('name')">Job Name
                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></a></th>
@@ -40,13 +40,15 @@
 
     <!-- Repeat Jobs -->
     <tbody>
-        <tr ng-repeat="job in serviceData.jobs | orderBy:sortType:sortReverse | filter: searchJobs">
+        <tr ng-class="job.order === 1 && bars ? 'firstJob' : 'lastJob'" ng-repeat="job in serviceData.jobs | orderBy:sortType:sortReverse | filter: searchJobs">
             <th data-header="Header1">{{ job.order }}</th>
             <td>{{ job.name }}</td>
             <td>{{ job.style }}</td>
-            <td>{{ job.type }}</td>
+<!--             <td>{{ serviceData.pages.page1.order }}</td>
+ -->            <td>{{ job.type }}</td>
+
             <td>{{ job.description | cut:true:25 }}</td>
-            <td>{{ job.images.length }}</td>
+            <td>{{ job.imagesLength }}</td>
             <td class-"checkbox"><input type="checkbox" ng-model="job.published" ng-checked="job.published"></td>
             <td ng-click="editJob(job)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
             <td><span class="glyphicon glyphicon-trash" ng-click="serviceData.jobs.$remove(job)" aria-hidden="true"></span></td>
@@ -54,10 +56,10 @@
     </tbody>
 </table>
 
-<jobs-modal delete-job="deleteJob()" update-job="updateJob()" current-job-id="currentJobId" images="images" job="job"></jobs-modal>
+<jobs-modal delete-job="deleteJob()" update-job="updateJob()" current-job-id="currentJobId" images="images" job="job" state="state"></jobs-modal>
 
 </div>
-<p>TO DO</p>
+<!-- <p>TO DO</p>
 <ul>
     <li>did it <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></li>
     <lh>TABLE</lh>
@@ -81,4 +83,4 @@
     <li>creat user menu</li>
     <li>user menu signout</li>
     <li>user menu settings</li>
-</ul>
+</ul> -->
