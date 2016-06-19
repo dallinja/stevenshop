@@ -1,4 +1,4 @@
-app.controller('MainCtrl',['$scope', 'mainService', 'jobsService', '$location', function($scope, mainService, jobsService, $location) {
+app.controller('MainCtrl',['$scope', 'mainService', '$location', function($scope, mainService, $location) {
 
 	// Set loading gif
 	$scope.data = {

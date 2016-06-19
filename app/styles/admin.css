@@ -47,8 +47,10 @@ nav li.active a {
 }
 /*----------TABLE----------*/
 
-th, td {
+.jobs-table.table > thead > tr > th, .jobs-table.table > thead > tr > td,
+.jobs-table.table > tbody > tr > th, .jobs-table.table > tbody > tr > td{
   text-align: center;
+  vertical-align: middle;
 }
 table .fa, table th a, table .glyphicon {
   cursor: pointer;
@@ -59,6 +61,29 @@ table .fa, table th a, table .glyphicon {
 /*.lastJob {
 	border-top: 6px solid #c09;
 }*/
+table input[type=number]::-webkit-inner-spin-button, 
+table input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none; 
+	margin: 0; 
+}
+.order-buttons {
+	float: left;
+	margin-top: -5px;
+	margin-bottom: -8px;
+	margin-left: 10px;
+	width: 16px;
+	color: #bbb;
+}
+.order-buttons div:hover {
+	color: #444;
+}
+.order-buttons div {
+	height: 16px;
+}
+.order-number {
+	float: right;
+	margin-right: 10px;
+}
 
 /*----------MODAL----------*/
 .img-well {
@@ -86,9 +111,15 @@ table .fa, table th a, table .glyphicon {
 .uploaded-image-div {
 	display: inline-block;
 	width: 116px;
-	border: 8px solid #BCBCBC;
+	height: 116px;
+	border: 4px solid #BCBCBC;
 	margin: 5px;
+	object-fit: contain;
+	overflow: hidden;
 }
 .uploaded-image {
-	width: 100px;
+
+	/*width: 108px;*/
+	height: 108px;
+	margin: 0 auto;
 }

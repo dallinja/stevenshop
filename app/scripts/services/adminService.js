@@ -5,6 +5,7 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
 	service.loading = true;
 
     service.query = function () {
+        var deferred2 = $q.defer();
         // Firebase URL
         var jobsRef = new Firebase("https://stevenshop.firebaseio.com/jobs");
         var pagesRef = new Firebase("https://stevenshop.firebaseio.com/pages");
@@ -24,32 +25,68 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
             service.jobs = response[0];
             for (var job in service.jobs) {
                 if (parseInt(job) || job == 0) {
-                    service.jobs[job].imagesLength = Object.keys(service.jobs[job].images).length;
+                    if (service.jobs[job].images) {
+                        service.jobs[job].imagesLength = Object.keys(service.jobs[job].images).length;
+                    } else {
+                        service.jobs[job].imagesLength = 0;
+                    }
                 }
             }
             // a temporary quick way to sort the jobs on the admin page
+            var segs = [0,0,0,0,0,0,0]; // to add up the # of each segment for the move buttons
             for (var job in service.jobs) {
                 switch (service.jobs[job].type) {
                     case 'Kitchens':
                         service.jobs[job].segOrder = 10;
+                        segs[0]++;
                         break;
                     case 'Bathrooms':
                         service.jobs[job].segOrder = 11;
+                        segs[1]++;
                         break;
                     case 'Home Offices':
                         service.jobs[job].segOrder = 12;
+                        segs[2]++;
                         break;
                     case 'Entertainment Centers':
                         service.jobs[job].segOrder = 13;
+                        segs[3]++;
                         break;
                     case 'Residential':
                         service.jobs[job].segOrder = 20;
+                        segs[4]++;
                         break;
                     case 'Barns and Shops':
                         service.jobs[job].segOrder = 21;
+                        segs[5]++;
                         break;
                     case 'Other':
                         service.jobs[job].segOrder = 22;
+                        segs[6]++;
+                }
+            }
+            for (var job in service.jobs) {
+                switch (service.jobs[job].type) {
+                    case 'Kitchens':
+                        service.jobs[job].segLength = segs[0];
+                        break;
+                    case 'Bathrooms':
+                        service.jobs[job].segLength = segs[1];
+                        break;
+                    case 'Home Offices':
+                        service.jobs[job].segLength = segs[2];
+                        break;
+                    case 'Entertainment Centers':
+                        service.jobs[job].segLength = segs[3];
+                        break;
+                    case 'Residential':
+                        service.jobs[job].segLength = segs[4];
+                        break;
+                    case 'Barns and Shops':
+                        service.jobs[job].segLength = segs[5];
+                        break;
+                    case 'Other':
+                        service.jobs[job].segLength = segs[6];
                 }
             }
 
@@ -69,10 +106,11 @@ app.factory('adminService', ['$firebase', '$firebaseArray', '$q', function($fire
                     service.pages[page].segmentsList = list;
                 }
             };
+            deferred2.resolve(service);
         }
-
-        return service;
+        return deferred2.promise;
     };
+
 
     return service;
 }]);

@@ -5,7 +5,8 @@ app.directive('fileUpload', function() {
 		scope: {
             images: '=',
 			currentJobId: '=',
-			images: '='
+			state: '=',
+			job: '='
 		},
 		link: function(scope, element, attr) {
 			// When something is uploaded
@@ -40,6 +41,11 @@ app.directive('fileUpload', function() {
 
 			// Initialize images array
 			$scope.images = [];
+			// $scope.initImages = function () {
+			// 	for (img in job.images) {
+			// 		$scope.images.push(img);
+			// 	}
+			// }
 
             // Run service's create function
             $scope.create = function (base64String) {
@@ -48,8 +54,14 @@ app.directive('fileUpload', function() {
 	                    if (response) {
 							// Upload succesfull
 							// Remove temporary loading gif and add real image
-							$scope.images.pop();
-	                        $scope.images.push(response);
+							// $scope.job.images.pop();
+							delete $scope.job.images.temp;
+							// console.log(response);
+							// $scope.job.images.push(response);
+							if ($scope.state === 'create') {
+		                        $scope.job.images.asdf = {};
+		                        $scope.job.images.asdf.base64String = response;
+		                    }
 	                    } else {
 	                        // Upload failed error
 	                    }
@@ -58,7 +70,10 @@ app.directive('fileUpload', function() {
 
 			// Add temporary loading image to array
 			$scope.addTempImg = function () {
-				$scope.images.push('images/loading.gif');
+				console.log($scope.job.images);
+				// $scope.job.images.push('images/loading.gif');
+				$scope.job.images.temp = {};
+				$scope.job.images.temp.base64String ='images/loading.gif';
 			};
         }
 	};

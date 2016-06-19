@@ -14,6 +14,9 @@ app.directive('sidebar',function() {
 
 				    for (var i = 0; i < scope.jobsMenu.page.length; i++) {
 				    	for (var eachJob in scope.jobsMenu.page[i]) {
+				    		if (!scope.jobsMenu.page[i][eachJob].published) {
+				    			continue;
+				    		}
 					    	if (parseInt(eachJob) || eachJob == "0") {
 						    	var job = scope.jobsMenu.page[i][eachJob].name.replace(/\s+/g, '-').toLowerCase();
 						    	var type = scope.jobsMenu.page[i][eachJob].type.replace(/\s+/g, '-').toLowerCase();

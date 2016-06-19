@@ -4,7 +4,7 @@
 		<ul>
 			<li ng-repeat="type in jobsMenu.page" id="{{ type[0].type | spaceToDash }}-tab" ng-class="{current: $index==0}"><a href="#/cabinetry#{{ type[0].type | spaceToDash }}">{{ type[0].type }}</a>
 				<ul>
-					<li ng-repeat="job in type" id="{{ job.name | lowercase }}-tab" ng-class="{current: $index==0}"><a href="#/cabinetry#{{ job.name | lowercase }}">{{ job.name }}</a></li>
+					<li ng-repeat="job in type | filter : !job.published" id="{{ job.name | lowercase }}-tab" ng-class="{current: $index==0}"><a href="#/cabinetry#{{ job.name | lowercase }}">{{ job.name }}</a></li>
 				</ul>
 			<li>
 			<!-- <li ng-repeat="type in jobsMenu" id="{{ type.jobType | spaceToDash }}-tab" ng-class="{current: $index==0}"><a href="#{{ type.jobType | spaceToDash }}">{{ type.jobType }}</a>

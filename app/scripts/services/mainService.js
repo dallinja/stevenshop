@@ -41,17 +41,11 @@ app.factory('mainService', ['$firebase', '$firebaseArray', '$q', function($fireb
             for (var segment in pages[index].categories) {
                 var seg = [];
                 for (var job in jobs) {
-                // if (jobs[job].type === pages[index].categories[segment].name) {
-                //         seg.push(jobs[job]);
-                //     }
-                // }
-                // service.page.push(seg)
                     if (jobs[job].type === pages[index].categories[segment].name) {
                         seg[jobs[job].order - 1] = jobs[job];
-                    }
+                    };
                 }
                 service.page.push(seg)
-
             };
         }
 
