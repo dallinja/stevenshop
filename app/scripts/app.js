@@ -19,7 +19,7 @@ var app = angular.
             state('about', {
                 url: '/about',
                 templateUrl: 'views/about.html',
-                controllerUrl: 'controllers/main.js'
+                controllerUrl: 'controllers/aboutCtrl.js'
             }).
             state('login', {
                 url: '/login',

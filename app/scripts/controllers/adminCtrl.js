@@ -1,9 +1,10 @@
-app.controller('adminCtrl', ['$scope', 'adminService', '$state', function($scope, service, $state) {
+app.controller('adminCtrl', ['$scope', 'adminService', '$state', '$firebaseObject', function($scope, service, $state, $firebaseObject) {
 
     // Set loading gif
     $scope.loading = false;
 
     // Check if logged in
+    var siteRef = "https://stevenshop.firebaseio.com";
     var ref = new Firebase("https://stevenshop.firebaseio.com");
     ref.onAuth(
         function (authData) {
@@ -18,23 +19,14 @@ app.controller('adminCtrl', ['$scope', 'adminService', '$state', function($scope
     );
 
     // Get initial data
-    $scope.serviceData = service.query();
+    service.query().then(function(response) {
+        $scope.serviceData = response;
+    });
 
     // Insert
     $scope.insert = function () {
         service.insert();
     };
-
-    // Delete
-    $scope.delete = function (id) {
-        var defintelyDelete = confirm('Are you sure you want to delete this job? It will be gone forever!');
-        if (defintelyDelete) {
-            service.delete(id);
-        }
-    };
-    // $scope.inputToggle = function() {
-    //     service.inputToggle();
-    // }
 
     // Login
     $scope.login = function () {

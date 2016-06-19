@@ -2,7 +2,7 @@
 
 <div class="main-container" ng-controller="MainCtrl">
 
-    <div ng-show="data.loading">
+    <div ng-show="data.loading" class="push-sidebar">
         <img src="/images/loading.gif" class="loading-gif" />
     </div>
 
@@ -22,7 +22,7 @@
 
                     <!-- Repeat jobs -->
                     <div ng-repeat="type in data.page">
-                        <div ng-repeat="job in type | filter : search">
+                        <div ng-repeat="job in type | filter : !job.published | filter : search">
                         <!-- <div ng-repeat="job in data.jobs"> -->
                             <h2 ng-class="{hidden:!$first}" id="{{ job.type | spaceToDash }}">{{ job.type }}</h2>
                             <div id="{{ job.name | lowercase }}" class="job-feature">

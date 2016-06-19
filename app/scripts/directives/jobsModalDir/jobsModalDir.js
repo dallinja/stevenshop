@@ -15,14 +15,33 @@ app.directive('jobsModal',function() {
 				$('#jobModal').modal('hide');
 			};
 		},
-		controller: function($scope, adminService, jobService, jobsService, $timeout) {
+		controller: function($scope, adminService, jobService, $timeout, $state) {
 
 			$scope.getAndSaveJob= function (job) {
-				jobsService.getAndSaveJob(job);
-				$('#jobModal').modal('hide');
+				$scope.saving = true;
+				if ($scope.state === 'create') {
+					jobService.newJobOrderUpdate(job).then(function() {
+						jobService.getAndSaveJob(job).then(function() {
+							$scope.saving = false;
+							$('#jobModal').modal('hide');
+							$timeout(function() {
+								$state.reload();
+							},1000);
+						});
+					});
+				} else {
+					jobService.getAndSaveJob(job).then(function() {
+						$scope.saving = false;
+						$('#jobModal').modal('hide');
+						$timeout(function() {
+							$state.reload();
+						},1000);
+					});
+				}
+				
 			}
 
-			$scope.addJob = function(name, style, type, desc, pub) {
+			$scope.addJob = function(name, style, type, desc, pub) { //NEVER GETS CALLED
 				// adminService.addJob(name);
 				adminService.addJob(
 					{
@@ -44,7 +63,7 @@ app.directive('jobsModal',function() {
 				}, 1000);
 			};
 
-			// Update job on save button click
+			// Update job on save button click THIS FUNCTION IS NEVER CALLED
 			$scope.updateJob = function () {
 		        // Build values
 		        var values = {

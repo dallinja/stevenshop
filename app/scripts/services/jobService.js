@@ -1,7 +1,8 @@
-app.factory('jobService', ['$firebase', '$firebaseArray', '$q', function($firebase, $firebaseArray, $q) {
+app.factory('jobService', ['$firebase', '$firebaseArray', '$firebaseObject', '$q', function($firebase, $firebaseArray, $firebaseObject, $q) {
     var service = {};
 
     // Firebase ref
+    var refer = "https://stevenshop.firebaseio.com/jobs";
     var ref = new Firebase("https://stevenshop.firebaseio.com/jobs");
 
     // Loading
@@ -28,28 +29,104 @@ app.factory('jobService', ['$firebase', '$firebaseArray', '$q', function($fireba
         var deferred = $q.defer();
 
         // Push the job
-        var key = ref.push({
-            'images': {
-                'url': '/images/logo.png'
-            },
+        var jobs = $firebaseArray(ref);
+        jobs.$add({
+            'images': {},
             'description': '',
-            'order': '',
+            'order': 1,
             'name': '',
             'style': '',
             'type': '',
             'published': false
-        },
-        // On completion
-        function (error) {
-            if (error) {
-                deferred.resolve(false);
-            } else {
-                // Succesfull return
-                deferred.resolve(key.key());
-            }
-        });
+        }).then(function(ref) {
+            deferred.resolve(ref.key());
+        })
 
         // Return promise
+        return deferred.promise;
+    };
+
+    service.getAndSaveJob = function (job) {
+        // Create promise
+        var deferred = $q.defer();
+
+        var jobsArray = $firebaseArray(ref);
+        jobsArray.$loaded().then(function() {
+            var jobObj = jobsArray.$getRecord(job.$id);
+            jobObj.order = job.order;
+            jobObj.name = job.name;
+            jobObj.style = job.style;
+            jobObj.type = job.type;
+            jobObj.description = job.description;
+            jobObj.published = job.published;
+            jobsArray.$save(jobObj).then(function (reference) {
+                console.log('Saved!!!!!!')
+                deferred.resolve(true);
+            });
+        })
+        return deferred.promise;
+    };
+
+    service.newJobOrderUpdate = function (job) {
+        var deferred = $q.defer();
+        var jobsArray = $firebaseArray(ref);
+        jobsArray.$loaded().then(function() {
+            for (var i = 0; i < jobsArray.length; i++) {
+                if(jobsArray[i].type === job.type) {
+                    jobsArray[i].order++;
+                    jobsArray.$save(jobsArray.$getRecord(jobsArray[i].$id)).then(function() {
+                    }, function(error) {
+                        console.log("Error1:", error);
+                    });
+                }
+            };
+            deferred.resolve(true);
+        }, function(error) {
+            console.log("Error2:", error);
+        });
+        return deferred.promise;
+    }
+
+    service.publish = function (job) {
+        var deferred = $q.defer();
+
+        var jobUrl = refer + '/' + job.$id;
+        var jobRef = new Firebase(jobUrl);
+        var jobObj = $firebaseObject(jobRef);
+        jobObj.$loaded().then(function () {
+            jobObj.published = job.published;
+            jobObj.$save().then(function(ref) {
+                deferred.resolve(true);
+            }, function(error) {
+                console.log("Error:", error);
+            });
+        })
+        return deferred.promise;
+    };
+
+    service.move = function (job1, job2) {
+        var deferred = $q.defer();
+        var jobUrl = refer + '/' + job1.$id;
+        var jobRef = new Firebase(jobUrl);
+        var jobObj = $firebaseObject(jobRef);
+        jobObj.$loaded().then(function () {
+            jobObj.order = job1.order;
+            jobObj.$save().then(function(ref) {
+                var jobUrl = refer + '/' + job2.$id;
+                var jobRef = new Firebase(jobUrl);
+                var jobObj = $firebaseObject(jobRef);
+                jobObj.$loaded().then(function () {
+                    jobObj.order = job2.order;
+                    jobObj.$save().then(function(ref) {
+                        deferred.resolve(true);
+                    }, function(error) {
+                        console.log("Error:", error);
+                    });
+                });
+            }, function(error) {
+                console.log("Error:", error);
+            });
+        })
         return deferred.promise;
     };
 
@@ -83,23 +160,51 @@ app.factory('jobService', ['$firebase', '$firebaseArray', '$q', function($fireba
         return deferred.promise;
     };
 
-    // Delete job
-    service.delete = function (id) {
+
+    service.delete = function (job) {
+        var deferred = $q.defer();
+        var jobsArray = $firebaseArray(ref);
+        jobsArray.$loaded().then(function() {
+            for (var i = 0; i < jobsArray.length; i++) {
+                if(jobsArray[i].type === job.type && jobsArray[i].order > job.order) {
+                    jobsArray[i].order--;
+                    jobsArray.$save(jobsArray.$getRecord(jobsArray[i].$id)).then(function() {
+                        // success
+                    }, function(error) {
+                        console.log("Error1:", error);
+                    });
+                }
+                if (jobsArray[i].$id === job.$id) {
+                    jobsArray.$remove(jobsArray.$getRecord(jobsArray[i].$id)).then(function() {
+                        // success
+                    }, function(error) {
+                        console.log("Error1:", error);
+                    });
+                }
+            };
+            deferred.resolve(true);
+        }, function(error) {
+            console.log("Error2:", error);
+        });
+        return deferred.promise;
+
+    }
+
+    // Delete job on cancel
+    service.deleteJob = function (id) {
         // Create promise
         var deferred = $q.defer();
 
         // Delete object at this url
         var delRef = new Firebase('https://stevenshop.firebaseio.com/jobs/' + id);
-        delRef.remove(
-            // When done
-            function (error) {
-                if (error) {
-                    // Failed
-                    deferred.resolve(false);
-                } else {
-                    // Success
-                    deferred.resolve(true);
-                }
+        var delObj = $firebaseObject(delRef);
+        delObj.$remove().then(function (ref) {
+                // Success
+                deferred.resolve(true);
+            }, function(error) {
+                // Failed
+                console.log("Error: ", error)
+                deferred.resolve(false);
             }
         );
 

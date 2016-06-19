@@ -28,14 +28,33 @@ app.controller('jobsCtrl', ['$scope', 'jobService', '$state', function($scope, j
 			$scope.bars = true;
 		}
 	}
+
+	// Move job up or down within a segment
+    $scope.move = function(dir, index) {
+        $scope.filteredJobs[index].order += dir;
+        $scope.filteredJobs[index + dir].order -= dir;
+        var job1 = $scope.filteredJobs[index];
+        var job2 = $scope.filteredJobs[index + dir];
+        jobService.move(job1, job2).then(function () {
+			$state.reload();
+		});
+    }
+
 	$scope.editJob = function(job) {
 		$scope.state = 'edit';
+		$scope.currentJobId = job.$id;
 		$('#jobModal').modal({backdrop: 'static'});
-		// jobsService.editJob().then(function (data) {
-			$scope.job = job;
-
-		// })
+		$scope.job = job;
 	}
+
+	$scope.publish = function (job) {
+		jobService.publish(job).then(function () {
+			$state.reload();
+		});
+	}
+	// $scope.published = function (id) {
+	// 	return $scope.selected.indexOf(id) >= 0;
+	// }
 
 	// Add job on button click
 	$scope.addJob = function () {
@@ -46,12 +65,25 @@ app.controller('jobsCtrl', ['$scope', 'jobService', '$state', function($scope, j
 		// Create job
 		jobService.create().then(
 			// On completion
-			function (response) {
-				if (response) {
+			function (key) {
+				console.log(key);
+				if (key) {
 					// Get current job ID for update
-					$scope.currentJobId = response;
+					$scope.currentJobId = key;
 					// Close loading gif
 					$scope.loading = false;
+					// load modal
+					$('#jobModal').modal({backdrop: 'static'});
+					$scope.job = {
+						'$id': key,
+						'images': {},
+			            'description': '',
+			            'order': 1,
+			            'name': '',
+			            'style': '',
+			            'type': '',
+			            'published': true
+					}
 				} else {
 					// Insert failed error
 
@@ -60,13 +92,23 @@ app.controller('jobsCtrl', ['$scope', 'jobService', '$state', function($scope, j
 		);
 	};
 
+	// Delete job
+    $scope.delete = function (job) {
+        var defintelyDelete = confirm('Are you sure you want to delete this job? It will be gone forever!');
+        if (defintelyDelete) {
+            jobService.delete(job).then(function(res) {
+            	$state.reload();
+            });
+        }
+    };
+
 	// Delete job on cancel
 	$scope.deleteJob = function () {
 		// Delete upload jobs array
 		$scope.images = [];
 
 		// Send delete request to firebase
-		jobService.delete($scope.currentJobId).then(
+		jobService.deleteJob($scope.currentJobId).then(
 			function (response) {
 				if (response) {
 					// Delete success

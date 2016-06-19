@@ -185,6 +185,10 @@ nav.main div.current {
 .container:before, .container:after, .container-fluid:before, .container-fluid:after {
 	content: none;
 }
+.push-sidebar {
+	margin-left: -250px;
+	margin-top: 50px;
+}
 .main-container, .admin-container {
 	position: relative;
 	margin: 87px auto 0;
@@ -207,6 +211,9 @@ nav.main div.current {
 	.menu-open {
 		padding-left: 250px;
 		transition: all 0.4s ease 0s;
+	}
+	.push-sidebar {
+		margin-left: 0;
 	}
 }
 @media (max-width: 767px) {
@@ -355,6 +362,17 @@ sidebar {
 }
 .loading-gif-button {
     width: 45px;
+    display: block;
+    margin: auto;
+}
+.saving-gif-div {
+	float: right;
+	position: relative;
+    top: -45px;
+    margin-right: 50px;
+}
+.saving-gif-button {
+	width: 28px;
     display: block;
     margin: auto;
 }
